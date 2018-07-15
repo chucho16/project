@@ -33,6 +33,24 @@ public class Algoritmos {
         }
         return null;
     }
+        public static List<Object> ubicarCualquierPlaneta(Planeta planetaCualquiera) {
+        List<Object> ubicacion = new LinkedList<>();
+        for (Nebulosa nebulosa : viaLactea.getLista_nebulosas()) {
+            for (SistemaPlanetario sPlanetario : nebulosa.getLista_sistemas_planetarios()) {
+                for (Planeta planeta : sPlanetario.getLista_planetas()) {
+                    if (planeta.getNombre().equalsIgnoreCase(planetaCualquiera.getNombre())) {
+                        ubicacion.add(0, nebulosa);
+                        ubicacion.add(1, sPlanetario);
+                        ubicacion.add(2, planeta);
+                        return ubicacion;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+        
+
 
     public static void llegoGasolina(Nave nave, Gasolinera gasolinera) {
         HashMap<String, Integer> material = nave.getCantidad_material_tienenave();

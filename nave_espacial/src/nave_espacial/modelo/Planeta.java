@@ -34,6 +34,8 @@ public class Planeta implements Runnable {
     private ImageIcon imagenPlaneta;
     private ImageIcon imagenPlanetaEnemigo;
     private int totalMaterial;
+    private int visitado=0;
+    
 
     private Thread hilo;
 
@@ -225,5 +227,19 @@ public class Planeta implements Runnable {
                 System.err.println("Error en hilo planeta:" + e);
             }
         }
+    }
+
+    /**
+     * @return the visitado
+     */
+    public int getVisitado() {
+        return visitado;
+    }
+
+    /**
+     * @param visitado the visitado to set
+     */
+    public void setVisitado(int visitado) {
+        this.visitado = visitado;
     }
 }

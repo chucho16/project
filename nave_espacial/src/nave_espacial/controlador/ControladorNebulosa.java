@@ -22,6 +22,7 @@ public class ControladorNebulosa {
 
     private Nebulosa nebulosa;
     public int[] lineaTransicion;
+    FrameNebulosaJugar framej;
 
     public ControladorNebulosa() {
     }
@@ -36,6 +37,9 @@ public class ControladorNebulosa {
         this.nebulosa = nebulosa;
         crearFrameNebulosa(parametro);
     }
+   public void destruirFrame(){
+        this.framej.dispose();
+    }
 
     private void crearFrameNebulosa(String parametro) {
         if (parametro.equalsIgnoreCase("cualquier cosa")) {
@@ -45,11 +49,11 @@ public class ControladorNebulosa {
             frame.getPanelNebulosa().setNebulosa(nebulosa);
             frame.definirFrame(this);
         } else {
-            FrameNebulosaJugar frame = new FrameNebulosaJugar();
-            frame.getPanelNebulosa().setListaDeSistemasPlanetaRios(nebulosa.getLista_sistemas_planetarios());
-            frame.getPanelNebulosa().setCostos_rutas(nebulosa.getCostos_rutas());
-            frame.getPanelNebulosa().setNebulosa(nebulosa);
-            frame.definirFrame(this);
+             framej = new FrameNebulosaJugar();
+            framej.getPanelNebulosa().setListaDeSistemasPlanetaRios(nebulosa.getLista_sistemas_planetarios());
+            framej.getPanelNebulosa().setCostos_rutas(nebulosa.getCostos_rutas());
+            framej.getPanelNebulosa().setNebulosa(nebulosa);
+            framej.definirFrame(this);
 
         }
     }

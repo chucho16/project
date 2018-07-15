@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Danii/Github/FPS/nave_espacial/src/nave_espacial/modelo/Planeta.java</file>
-            <file>file:/C:/Users/Danii/Github/FPS/nave_espacial/src/nave_espacial/modelo/SistemaPlanetario.java</file>
-            <file>file:/C:/Users/Danii/Github/FPS/nave_espacial/src/nave_espacial/modelo/Nave.java</file>
-            <file>file:/C:/Users/Danii/Github/FPS/nave_espacial/src/nave_espacial/controlador/ControladorSistemaPlanetario.java</file>
-            <file>file:/C:/Users/Danii/Github/FPS/nave_espacial/src/nave_espacial/vista/PanelSistemaPlanetario.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/FPS/nave_espacial/src/nave_espacial/modelo/Algoritmos.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/FPS/nave_espacial/src/nave_espacial/controlador/ControladorDeCarga.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/FPS/nave_espacial/src/nave_espacial/modelo/Nave.java</file>
+            <file>file:/C:/Users/Lenovo/Desktop/FPS/nave_espacial/src/nave_espacial/controlador/ControladorSistemaPlanetario.java</file>
         </group>
     </open-files>
 </project-private>

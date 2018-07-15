@@ -22,9 +22,13 @@ public class ControladorSistemaPlanetario {
     private SistemaPlanetario sPlanetario;
     private ControladorPlaneta planetaControl;
     public int[] lineaTransicion;
-
+    public FrameSistemaPlanetarioJugar frameJ;
+public FrameSistemaPlanetarioJugar frame;
     public ControladorSistemaPlanetario() {
 
+    }
+        public void destruirFrame(){
+        this.frameJ.dispose();
     }
 
     public ControladorSistemaPlanetario(SistemaPlanetario sPlanetario, Nebulosa nebulosa) {
@@ -47,13 +51,14 @@ public class ControladorSistemaPlanetario {
             frame.getPanelSistemaPlanetario().setRutas_planetas(sPlanetario.getRutas_planetas());
             frame.definirFrame(this);
         } else {
-            FrameSistemaPlanetarioJugar frame = new FrameSistemaPlanetarioJugar();
-            frame.getPanelSistemaPlanetario().setListaPlanetas(getsPlanetario().getLista_planetas());
-            frame.getPanelSistemaPlanetario().setRutas_planetas(sPlanetario.getRutas_planetas());
-            frame.definirFrame(this);
+           frameJ = new FrameSistemaPlanetarioJugar();
+            frameJ.getPanelSistemaPlanetario().setListaPlanetas(getsPlanetario().getLista_planetas());
+            frameJ.getPanelSistemaPlanetario().setRutas_planetas(sPlanetario.getRutas_planetas());
+            frameJ.definirFrame(this);
 
         }
     }
+ 
 
     private void crearFrameSistemaPlanetario() {
         FrameSistemaPlanetario frame = new FrameSistemaPlanetario();
