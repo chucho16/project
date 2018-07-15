@@ -48,6 +48,7 @@ public class Nave implements Runnable {
     private ControladorSistemaPlanetario controlSP;
     private ControladorNebulosa controlNebulosa;
 
+    //cambio backup
 //crear un sistema ofencivo que determina que arma usar ante un ataque
     public Nave() {
         ubicacion = Algoritmos.ubicarTierra();
@@ -266,8 +267,6 @@ public class Nave implements Runnable {
 
     @Override
     public void run() {
-
-//        
         animacionSalir();
         entrarSistemaP((SistemaPlanetario) ubicacion.get(1));
         ubicarNaveSalidaPlaneta();
