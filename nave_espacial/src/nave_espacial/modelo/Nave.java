@@ -52,11 +52,11 @@ public class Nave implements Runnable {
 
 //crear un sistema ofencivo que determina que arma usar ante un ataque
     public Nave() {
-        ubicacion = Algoritmos.ubicarTierra();        
+        ubicacion = Algoritmos.ubicarTierra();
         cantidad_material_tienenave = new HashMap<>();
         cantidad_material_tienenave.put("iridio", 0);
         cantidad_material_tienenave.put("paladio", 0);
-        cantidad_material_tienenave.put("platino",0);
+        cantidad_material_tienenave.put("platino", 0);
         cantidad_material_tienenave.put("zero", 0);
         armas = new LinkedList<>();
         armas.add(new Arma(0, "Escudo multinúcleo", "baja", 0));
@@ -68,15 +68,15 @@ public class Nave implements Runnable {
         sentido = true;
 //        x = ((Planeta) ubicacion.get(2)).getPosX();
 //        y = ((Planeta) ubicacion.get(2)).getPosY();
-        x= 450;
-        y=50;
+        x = 450;
+        y = 50;
 //        xDestino = x;
 //        yDestino = 220;
 //        xOrigen = xDestino;
 //        yOrigen = 220;
         entrarPlaneta((Planeta) ubicacion.get(2));
-        dondeEstoy = "planeta";
-       
+        dondeEstoy = "Planeta";
+
     }
 
     public void iniciarHilo() {
@@ -269,160 +269,67 @@ public class Nave implements Runnable {
         }
     }
 
-    @Override
-    public void run() {  
-        animacionSalir();
-        ubicarNaveSalidaPlaneta();
-           while(true){
-        switch (dondeEstoy) {
-              case "Planeta":
-                  if((!((Planeta) ubicacion.get(2)).getNombre().equalsIgnoreCase("Tierra"))&&(!((SistemaPlanetario) ubicacion.get(1)).equals(Algoritmos.ubicarTierra().get(1)))){
-                 ubicacion.add(2,((SistemaPlanetario) ubicacion.get(1)).getLista_planetas().getFirst());
-                  }
-                  entrarPlaneta((Planeta) ubicacion.get(2));
-                  try {
-                    Thread.sleep(5000);
-                    
-                } catch (Exception e) {
-                }///hacer aqui una simulacion alguna cosa que muestre que se extraen materiales
-                  ubicacionCualquiera = Algoritmos.ubicarCualquierPlaneta((Planeta) ubicacion.get(2)); 
-                  for (int i = 0; i < ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().size(); i++) {
-                    if(((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getNombre()==((Planeta) ubicacionCualquiera.get(2)).getNombre()){
-                    for (String llave : nave.getCantidad_material_tienenave().keySet()) {
-                    if (nave.getCantidad_material_tienenave().get(llave) <= 2000000) {
-                       nave.getCantidad_material_tienenave().put("iridio",(nave.getCantidad_material_tienenave().get("iridio"))+((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("iridio"));    
-                      ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("iridio",0);
-                       nave.getCantidad_material_tienenave().put("paladio",(nave.getCantidad_material_tienenave().get("paladio"))+((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("paladio"));
-                      ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("paladio",0);
-                       nave.getCantidad_material_tienenave().put("platino",(nave.getCantidad_material_tienenave().get("platino"))+((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("platino"));                      
-                      ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("platino",0);    
-                       nave.getCantidad_material_tienenave().put("zero",(nave.getCantidad_material_tienenave().get("zero"))+((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("zero"));                      
-                      ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("zero",0);              
-                  }}}}
-                  ubicacion.remove(2);
-                  ubicarNaveSalidaPlaneta();
-                  controlPlaneta.destruirFrame();
-                  animacionSalir();
-                  ubicarNaveSalidaPlaneta();
-                  dondeEstoy="SistemaPlanetario";
-                  
-                break;
-            case "SistemaPlanetario":
-             if (cantidadTotalMaterialNave() <= 2000000) {   //20000 porque 5000 por cada material
-                entrarSistemaP((SistemaPlanetario) ubicacion.get(1));              
-                Planeta objetivo = elegirMejorPlanetaAledaño();
-                moverNave(new Point(objetivo.getPosX(), objetivo.getPosY()));
-                int calculo = 0;
-                int conty = 0;
-                int contx = 0;
-                try {
-                    Thread.sleep(3000);
-                    
-                } catch (Exception e) {
-                }
-                moverA(objetivo, contx, conty);
-                ubicarNaveSalidaSistemaPlanetario();
-                ubicacion.add(2, objetivo);
-                controlSP.destruirFrame();
-                if(((SistemaPlanetario) ubicacion.get(1)).getTotalMateriales()>100){
-                dondeEstoy="Planeta";
-                }else{
-                 ubicacion.remove(1);
-                 ubicacion.add(1,((Nebulosa) ubicacion.get(0)).getLista_sistemas_planetarios().getFirst());
-                dondeEstoy="Nebulosa";  
-                }
-                break;
-                  }
-            case "Nebulosa":
-                ubicacionCualquiera = Algoritmos.ubicarCualquierPlaneta((Planeta) ubicacion.get(2)); 
-                if (cantidadTotalMaterialNave() <= 2000000) {
-                entrarNebulosa((Nebulosa) ubicacionCualquiera.get(0));
-                SistemaPlanetario objetivo = elegirMejorSPAledaño();
-                moverNave(new Point(objetivo.getPosX(), objetivo.getPosY()));
-                int calculo = 0;
-                int conty = 0;
-                int contx = 0;
-                try {
-                    Thread.sleep(3000);
-                    
-                } catch (Exception e) {
-                }
-                moverB(objetivo, contx, conty);
-                ubicarNaveSalidaNebulosa();
-                ubicacion.add(1, objetivo);
-                ubicacion.add(2,((SistemaPlanetario) ubicacion.get(1)).getLista_planetas().getFirst());
-                controlNebulosa.destruirFrame();
-                dondeEstoy="SistemaPlanetario";
-                break;
-                }
-        }
-        }
-    }
-    
-    
-  private Integer cantidadTotalMaterialNave(){
-        Integer cantidadSuma=0;   
+    private Integer cantidadTotalMaterialNave() {
+        Integer cantidadSuma = 0;
         for (String llave : nave.getCantidad_material_tienenave().keySet()) {
-            cantidadSuma=cantidadSuma+nave.getCantidad_material_tienenave().get(llave);       
+            cantidadSuma = cantidadSuma + nave.getCantidad_material_tienenave().get(llave);
         }
         return cantidadSuma;
-   }
- 
+    }
 
     private void moverA(Planeta objetivo, int contx, int conty) {
-        int variable=1;
-           while (variable==1) {
+        int variable = 1;
+        while (variable == 1) {
             if (x != xDestino) {
-               x = contx;
-                
-            }else{
+                x = contx;
+
+            } else {
                 conty = 0;
             }
             if (y != yDestino) {
-                y =(contx*yOrigen - contx*yDestino +xOrigen * yDestino- xDestino*yOrigen)/(xOrigen - xDestino);
-                if(!sentido){
+                y = (contx * yOrigen - contx * yDestino + xOrigen * yDestino - xDestino * yOrigen) / (xOrigen - xDestino);
+                if (!sentido) {
                     contx++;
-                }else{
+                } else {
                     contx--;
                 }
-            }   
+            }
             try {
                 Thread.sleep(5);
             } catch (Exception e) {
             }
-            if(((x==objetivo.getPosX()-1)||(x==objetivo.getPosX()))||(y==objetivo.getPosY())){
-                variable=2;
+            if (((x == objetivo.getPosX() - 1) || (x == objetivo.getPosX())) || (y == objetivo.getPosY())) {
+                variable = 2;
             }
-           }
+        }
     }
-    
+
     private void moverB(SistemaPlanetario objetivo, int contx, int conty) {
-        int variable=1;
-           while (variable==1) {
+        int variable = 1;
+        while (variable == 1) {
             if (x != xDestino) {
-               x = contx;
-                
-            }else{
+                x = contx;
+
+            } else {
                 conty = 0;
             }
             if (y != yDestino) {
-                y =(contx*yOrigen - contx*yDestino +xOrigen * yDestino- xDestino*yOrigen)/(xOrigen - xDestino);
-                if(!sentido){
+                y = (contx * yOrigen - contx * yDestino + xOrigen * yDestino - xDestino * yOrigen) / (xOrigen - xDestino);
+                if (!sentido) {
                     contx++;
-                }else{
+                } else {
                     contx--;
                 }
-            }   
+            }
             try {
                 Thread.sleep(5);
             } catch (Exception e) {
             }
-            if(((x==objetivo.getPosX()-1)||(x==objetivo.getPosX()))||(y==objetivo.getPosY())){
-                variable=2;
+            if (((x == objetivo.getPosX() - 1) || (x == objetivo.getPosX())) || (y == objetivo.getPosY())) {
+                variable = 2;
             }
-           }
+        }
     }
- 
 
     private Planeta elegirMejorPlanetaAledaño() {
         int indicePlaneta = controlSP.getsPlanetario().getLista_planetas().indexOf((Planeta) ubicacion.get(2));
@@ -439,7 +346,8 @@ public class Nave implements Runnable {
         Planeta objetivo = controlSP.getsPlanetario().getLista_planetas().get(indiceMayor);
         return objetivo;
     }
-        private SistemaPlanetario elegirMejorSPAledaño() {
+
+    private SistemaPlanetario elegirMejorSPAledaño() {
         int indiceSP = controlNebulosa.getNebulosa().getLista_sistemas_planetarios().indexOf((SistemaPlanetario) ubicacion.get(1));
         int indiceMayor = indiceSP;
         for (int i = 0; i < controlNebulosa.getNebulosa().getCostos_rutas().get(indiceSP).size(); i++) {
@@ -456,9 +364,9 @@ public class Nave implements Runnable {
     }
 
     private void ubicarNaveSalidaPlaneta() {
+        dondeEstoy = "SistemaPlanetario";
         this.x = ((Planeta) ubicacion.get(2)).getPosX();
         this.y = ((Planeta) ubicacion.get(2)).getPosY();
-
     }
 
     private void ubicarNaveSalidaNebulosa() {
@@ -472,10 +380,13 @@ public class Nave implements Runnable {
     }
 
     private void animacionSalir() {
+        sentido = true;
         while (true) {
             if (!siSalio) {
                 salir();
+                
             } else {
+                siSalio = false;
                 break;
             }
             try {
@@ -486,42 +397,168 @@ public class Nave implements Runnable {
     }
 
     private void entrarPlaneta(Planeta planeta) {
-       controlPlaneta = new ControladorPlaneta(planeta, "jugar");
+        dondeEstoy = "Planeta";
+        controlPlaneta = new ControladorPlaneta(planeta, "jugar");
     }
 
     private void entrarSistemaP(SistemaPlanetario sPlanetario) {
+        dondeEstoy = "SistemaPlanetario";
         controlSP = new ControladorSistemaPlanetario(sPlanetario, "jugar");
     }
 
     private void entrarNebulosa(Nebulosa nebulosa) {
+        dondeEstoy = "Nebulosa";
         controlNebulosa = new ControladorNebulosa(nebulosa, "jugar");
     }
 
     private void salir() {
-        x -= 10;
-        y+=7;
-        if (x < -100) {
-            siSalio = true;
-            if (controlPlaneta != null) {
-                controlPlaneta.destruirFrame();
-                dondeEstoy = "SistemaPlanetario";
-         
-                
-            }else if (controlSP != null) {
-                controlSP.destruirFrame();
-                dondeEstoy = "Planeta";
-
-            } else if (controlNebulosa != null) {
-                controlNebulosa.destruirFrame();
-                dondeEstoy = "SistemaPlanetario";
-            }
-
-            controlNebulosa = null;
-            controlSP = null;
-            controlPlaneta = null;
+        switch (dondeEstoy) {
+            case "Planeta":
+                x -= 10;
+                if (x < -100) {
+                    siSalio = true;
+                    if (controlPlaneta != null) {
+                        controlPlaneta.destruirFrame();
+                    }
+                }
+                break;
+            case "SistemaPlanetario":
+                if (controlSP != null) {
+                    controlSP.destruirFrame();
+                }
+                break;
+            case "Nebulosa":
+                if (controlNebulosa != null) {
+                    controlNebulosa.destruirFrame();
+                }
+                break;
         }
 
     }
+
+    private void extraerMateriales() {
+        Planeta actual = (Planeta) ubicacion.get(2);
+        int consumoSondas = 0;
+        for (String materia : actual.getMateriales().keySet()) {
+            if (actual.getMateriales().get(materia) > 0) {
+                if(consumoSondas == 0){
+                    this.numero_sondas--;
+                }
+                consumoSondas++;
+                this.cantidad_material_tienenave.put(materia, this.cantidad_material_tienenave.get(materia) + actual.getMateriales().get(materia));
+                actual.getMateriales().put(materia, 0);
+            }
+            if (consumoSondas == 2) {
+                consumoSondas = 0;
+            }
+        }
+
+    }
+
+    @Override
+    public void run() {
+        animacionSalir();
+        ubicarNaveSalidaPlaneta();
+        while (true) {
+            switch (dondeEstoy) {
+                case "SistemaPlanetario":
+                    if (cantidadTotalMaterialNave() <= 2000000) {   //20000 porque 5000 por cada material
+                        entrarSistemaP((SistemaPlanetario) ubicacion.get(1));
+                        Planeta objetivo = elegirMejorPlanetaAledaño();
+                        moverNave(new Point(objetivo.getPosX(), objetivo.getPosY()));
+                        int calculo = 0;
+                        int conty = 0;
+                        int contx = 0;
+                        try {
+                            Thread.sleep(3000);
+
+                        } catch (Exception e) {
+                        }
+                        moverA(objetivo, contx, conty);
+                        //ubicarNaveSalidaSistemaPlanetario();
+                        ubicacion.remove(2);
+                        ubicacion.add(2, objetivo);
+                        salir();
+                        entrarPlaneta(objetivo);
+
+//                        
+//                        if (((SistemaPlanetario) ubicacion.get(1)).getTotalMateriales() > 100) {
+//                            dondeEstoy = "Planeta";
+//                        } else {
+//                            ubicacion.remove(1);
+//                            ubicacion.add(1, ((Nebulosa) ubicacion.get(0)).getLista_sistemas_planetarios().getFirst());
+//                            dondeEstoy = "Nebulosa";
+//                        }
+//                        break;
+                    }
+                    break;
+                case "Nebulosa":
+                    ubicacionCualquiera = Algoritmos.ubicarCualquierPlaneta((Planeta) ubicacion.get(2));
+                    if (cantidadTotalMaterialNave() <= 2000000) {
+                        entrarNebulosa((Nebulosa) ubicacionCualquiera.get(0));
+                        SistemaPlanetario objetivo = elegirMejorSPAledaño();
+                        moverNave(new Point(objetivo.getPosX(), objetivo.getPosY()));
+                        int calculo = 0;
+                        int conty = 0;
+                        int contx = 0;
+                        try {
+                            Thread.sleep(3000);
+
+                        } catch (Exception e) {
+                        }
+                        moverB(objetivo, contx, conty);
+                        ubicarNaveSalidaNebulosa();
+                        ubicacion.add(1, objetivo);
+                        ubicacion.add(2, ((SistemaPlanetario) ubicacion.get(1)).getLista_planetas().getFirst());
+                        controlNebulosa.destruirFrame();
+                        dondeEstoy = "SistemaPlanetario";
+                        break;
+                    }
+                    break;
+
+                case "Planeta":
+                    try {
+                        Thread.sleep(5000);
+                    } catch (Exception e) {
+                    }///hacer aqui una simulacion alguna cosa que muestre que se extraen materiales
+                    extraerMateriales();
+                    animacionSalir();
+                    ubicarNaveSalidaPlaneta();
+
+//                    if ((!((Planeta) ubicacion.get(2)).getNombre().equalsIgnoreCase("Tierra")) && (!((SistemaPlanetario) ubicacion.get(1)).equals(Algoritmos.ubicarTierra().get(1)))) {
+//                        ubicacion.add(2, ((SistemaPlanetario) ubicacion.get(1)).getLista_planetas().getFirst());
+//                    }
+//                    try {
+//                        Thread.sleep(5000);
+//
+//                    } catch (Exception e) {
+//                    }///hacer aqui una simulacion alguna cosa que muestre que se extraen materiales
+//                    ubicacionCualquiera = Algoritmos.ubicarCualquierPlaneta((Planeta) ubicacion.get(2));
+//                    for (int i = 0; i < ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().size(); i++) {
+//                        if (((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getNombre() == ((Planeta) ubicacionCualquiera.get(2)).getNombre()) {
+//                            for (String llave : nave.getCantidad_material_tienenave().keySet()) {
+//                                if (nave.getCantidad_material_tienenave().get(llave) <= 2000000) {
+//                                    nave.getCantidad_material_tienenave().put("iridio", (nave.getCantidad_material_tienenave().get("iridio")) + ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("iridio"));
+//                                    ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("iridio", 0);
+//                                    nave.getCantidad_material_tienenave().put("paladio", (nave.getCantidad_material_tienenave().get("paladio")) + ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("paladio"));
+//                                    ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("paladio", 0);
+//                                    nave.getCantidad_material_tienenave().put("platino", (nave.getCantidad_material_tienenave().get("platino")) + ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("platino"));
+//                                    ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("platino", 0);
+//                                    nave.getCantidad_material_tienenave().put("zero", (nave.getCantidad_material_tienenave().get("zero")) + ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().get("zero"));
+//                                    ((SistemaPlanetario) ubicacionCualquiera.get(1)).getLista_planetas().get(i).getMateriales().put("zero", 0);
+//                                }
+//                            }
+//                        }
+//                    }
+//                    ubicacion.remove(2);
+//                    ubicarNaveSalidaPlaneta();
+//                    controlPlaneta.destruirFrame();
+//                    animacionSalir();
+//                    ubicarNaveSalidaPlaneta();
+//                    dondeEstoy = "SistemaPlanetario";
+                    break;
+            }
+        }
+    }
+
 }
-
-
