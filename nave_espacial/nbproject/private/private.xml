@@ -4,6 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/daniel2/Documents/GitHub/project/nave_espacial/src/nave_espacial/modelo/Nave.java</file>
+            <file>file:/C:/Users/daniel2/Documents/GitHub/project/nave_espacial/src/nave_espacial/modelo/SistemaPlanetario.java</file>
+            <file>file:/C:/Users/daniel2/Documents/GitHub/project/nave_espacial/src/nave_espacial/modelo/Nebulosa.java</file>
+            <file>file:/C:/Users/daniel2/Documents/GitHub/project/nave_espacial/src/nave_espacial/modelo/Planeta.java</file>
+            <file>file:/C:/Users/daniel2/Documents/GitHub/project/nave_espacial/src/nave_espacial/vista/PanelNebulosa.java</file>
+            <file>file:/C:/Users/daniel2/Documents/GitHub/project/nave_espacial/src/nave_espacial/modelo/Algoritmos.java</file>
         </group>
     </open-files>
 </project-private>

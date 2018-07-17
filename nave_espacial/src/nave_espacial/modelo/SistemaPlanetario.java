@@ -200,4 +200,13 @@ public class SistemaPlanetario implements Runnable {
     public int getTotalMateriales() {
         return totalMateriales;
     }
+    
+    public Planeta getPlanetaConGasolinera(){
+        for(Planeta planeta : this.lista_planetas){
+            if(planeta.conGasolinera()){
+                return planeta;
+            }
+        }
+        return null;
+    }
 }
