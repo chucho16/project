@@ -5,8 +5,11 @@
  */
 package nave_espacial.vista;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -103,7 +106,15 @@ public class PanelPlaneta extends javax.swing.JPanel {
 
     private void pintarnave(Graphics g) {
         if (nave != null) {
-            g.drawImage(nave.getImagen().getImage(), nave.getX(), nave.getY(), 100, 46, this);
+            if (nave.getBanderaNaveExtraccion()) {
+                g.setColor(Color.GREEN);
+                Graphics2D g2 = (Graphics2D)g;
+                BasicStroke stroke = new BasicStroke(3.0f); 
+    g2.setStroke(stroke);
+    g2.draw(new Line2D.Float(nave.getX(), nave.getY(), (1366 / 2), 275));
+            }
+            g.drawImage(nave.getImagen().getImage(), nave.getX()-50, nave.getY()-23, 100, 46, this);
+
         }
     }
 

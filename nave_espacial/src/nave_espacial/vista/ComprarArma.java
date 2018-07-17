@@ -193,7 +193,7 @@ public class ComprarArma extends javax.swing.JDialog {
         jLabel21.setText("Zero:");
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel22.setText("Arma Hielo");
+        jLabel22.setText("Vida Infinity");
 
         imagenHielo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nave_espacial/vista/imagenes/armas/armaHielo.png"))); // NOI18N
 
@@ -209,7 +209,7 @@ public class ComprarArma extends javax.swing.JDialog {
         imagenReactor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nave_espacial/vista/imagenes/armas/reactor.png"))); // NOI18N
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel26.setText("Invisibilidad");
+        jLabel26.setText("capacidad conbustible");
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel27.setText("Iridio:");
@@ -249,7 +249,7 @@ public class ComprarArma extends javax.swing.JDialog {
         jLabel37.setText("Platino:");
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel38.setText("Arma Energetica");
+        jLabel38.setText("Cañon Plasma");
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel39.setText("Zero:");
@@ -767,8 +767,8 @@ public class ComprarArma extends javax.swing.JDialog {
                 }
                 break;
 
-            case "Propulsor":
-                arma = inventario.getPropulsor();
+            case "Propulsor Onix":
+                arma = inventario.getPropulsorOnix();
                 if (nave.getCantidad_material_tienenave() != null) {
                     contador = 0;
                     for (String llave : nave.getCantidad_material_tienenave().keySet()) {
@@ -787,8 +787,8 @@ public class ComprarArma extends javax.swing.JDialog {
                 }
                 break;
 
-            case " Arma Energetica (Luz)":
-                arma = inventario.getArmaEnergeticaLuz();
+            case "cañon Plasma":
+                arma = inventario.getCañonPlasma();
                 if (nave.getCantidad_material_tienenave() != null) {
                     contador = 0;
                     for (String llave : nave.getCantidad_material_tienenave().keySet()) {
@@ -807,8 +807,8 @@ public class ComprarArma extends javax.swing.JDialog {
                 }
                 break;
 
-            case "Reactor":
-                arma = inventario.getReactor();
+            case "capacidad de depositos":
+                arma = inventario.getCapacidadDeDepositos();
                 if (nave.getCantidad_material_tienenave() != null) {
                     contador = 0;
                     for (String llave : nave.getCantidad_material_tienenave().keySet()) {
@@ -827,8 +827,8 @@ public class ComprarArma extends javax.swing.JDialog {
                 }
                 break;
 
-            case "Arma De Hielo":
-                arma = inventario.getArmaHielo();
+            case "vida Infinity":
+                arma = inventario.getVidaInfinity();
                 if (nave.getCantidad_material_tienenave() != null) {
                     contador = 0;
                     for (String llave : nave.getCantidad_material_tienenave().keySet()) {
@@ -847,8 +847,8 @@ public class ComprarArma extends javax.swing.JDialog {
                 }
                 break;
 
-            case "Invisibilidad":
-                arma = inventario.getInvisibilidad();
+            case "capacidad de combustible":
+                arma = inventario.getCapacidadDeCombustible();
                 if (nave.getCantidad_material_tienenave() != null) {
                     contador = 0;
                     for (String llave : nave.getCantidad_material_tienenave().keySet()) {
@@ -894,30 +894,30 @@ public class ComprarArma extends javax.swing.JDialog {
         this.precioPlatinoBlindaje.setText(String.valueOf(inventario.getBlindajeNavesPesadas().getPrecio_del_arma().get("platino")));
         this.precioZeroBlindaje.setText(String.valueOf(inventario.getBlindajeNavesPesadas().getPrecio_del_arma().get("zero")));
     
-        this.precioIridioPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("iridio")));
-        this.precioPaladioPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("paladio")));
-        this.precioPlatinoPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("platino")));
-        this.precioZeroPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("zero")));
-    
-        this.precioIridioEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("iridio")));
-        this.precioPaladioEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("paladio")));
-        this.precioPlatinoEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("platino")));
-        this.precioZeroEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("zero")));
-    
-        this.precioIridioReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("iridio")));
-        this.precioPaladioReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("paladio")));
-        this.precioPlatinoReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("platino")));
-        this.precioZeroReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("zero")));
-    
-        this.precioIridioHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("iridio")));
-        this.precioPaladioHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("paladio")));
-        this.precioPlatinoHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("platino")));
-        this.precioZeroHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("zero")));
-    
-        this.precioIridioInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("iridio")));
-        this.precioPaladioInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("paladio")));
-        this.precioPlatinoInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("platino")));
-        this.precioZeroInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("zero")));
+//        this.precioIridioPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("iridio")));
+//        this.precioPaladioPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("paladio")));
+//        this.precioPlatinoPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("platino")));
+//        this.precioZeroPropulsor.setText(String.valueOf(inventario.getPropulsor().getPrecio_del_arma().get("zero")));
+//    
+//        this.precioIridioEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("iridio")));
+//        this.precioPaladioEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("paladio")));
+//        this.precioPlatinoEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("platino")));
+//        this.precioZeroEnergetica.setText(String.valueOf(inventario.getArmaEnergeticaLuz().getPrecio_del_arma().get("zero")));
+//    
+//        this.precioIridioReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("iridio")));
+//        this.precioPaladioReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("paladio")));
+//        this.precioPlatinoReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("platino")));
+//        this.precioZeroReactor.setText(String.valueOf(inventario.getReactor().getPrecio_del_arma().get("zero")));
+//    
+//        this.precioIridioHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("iridio")));
+//        this.precioPaladioHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("paladio")));
+//        this.precioPlatinoHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("platino")));
+//        this.precioZeroHielo.setText(String.valueOf(inventario.getArmaHielo().getPrecio_del_arma().get("zero")));
+//    
+//        this.precioIridioInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("iridio")));
+//        this.precioPaladioInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("paladio")));
+//        this.precioPlatinoInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("platino")));
+//        this.precioZeroInvisibilidad.setText(String.valueOf(inventario.getInvisibilidad().getPrecio_del_arma().get("zero")));
     }
     /**
      * @param args the command line arguments

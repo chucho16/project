@@ -16,106 +16,111 @@ public class TiposArma {
   private Arma cañonThanix;
   private Arma escudoMultinucleo;
   private Arma blindajeNavesPesadas;
-  private Arma propulsor;
-  private Arma armaEnergeticaLuz;
-  private Arma reactor;
-  private Arma invisibilidad;
-  private Arma armaHielo;
+  private Arma propulsorOnix;
+  private Arma cañonPlasma;
+  private Arma capacidadDeDepositos;
+  private Arma vidaInfinity;
+  private Arma capacidadDeCombustible;
     
     
 
     public TiposArma() {
-        cañonThanix= new Arma(1,"cañon Thanix","alto",cargarPrecioThanix(),8);
-        escudoMultinucleo= new Arma(2,"escudo Multinucleo","alto",cargarPrecioEscudoMultinucleo(),1);
-        blindajeNavesPesadas =new Arma(3,"blindaj eNavesPesadas","alto",cargarPrecioBlindajeNavesPesadas(),1);
-        propulsor=new Arma(4,"propulsor","alto",cargarPrecioPropulsor(),1);
-        armaEnergeticaLuz=new Arma(5,"arma Energetica Luz","bajo",cargarPrecioArmaEnergetica(),30);
-        reactor=new Arma(6,"reactor","alto",cargarPrecioReactor(),1);
-        invisibilidad=new Arma(7,"invisibilidad","medio",cargarPrecioInvisibilidad(),2);
-        armaHielo=new Arma(8,"arma Hielo","medio",cargarPrecioArmaDeHielo(),10);      
+        
+        escudoMultinucleo= new Arma(1,"escudo Multinucleo","alto",cargarPrecioEscudoMultinucleo(),1);
+        blindajeNavesPesadas =new Arma(2,"blindaje Naves Pesadas","alto",cargarPrecioBlindajeNavesPesadas(),1);
+        cañonThanix= new Arma(3,"cañon Thanix","alto",cargarPrecioThanix(),8);
+        propulsorOnix=new Arma(4,"propulsor Onix","alto",cargarPrecioPropulsorOnix(),1);
+        cañonPlasma=new Arma(5,"cañon Plasma","alto",cargarPrecioCañonPlasma(),1);
+        capacidadDeDepositos=new Arma(6,"capacidad de depositos","alto",cargarPrecioCapacidadDeDepositos(),1);
+        vidaInfinity=new Arma(7,"vida Infinity","alto",cargarPrecioVidaInfinity(),1);
+        capacidadDeCombustible=new Arma(8,"capacidad de combustible","alto",cargarPrecioCapacidadDeCombustible(),1);
+                     
     }
 
-    public TiposArma(Arma cañonThanix, Arma escudoMultinucleo, Arma blindajeNavesPesadas, Arma propulsor, Arma armaEnergeticaLuz, Arma reactor, Arma invisibilidad, Arma armaHielo) {
-        this.cañonThanix = cañonThanix;
+    public TiposArma(Arma escudoMultinucleo, Arma blindajeNavesPesadas, Arma cañonThanix, Arma cañonPlasma, Arma capacidadDeDepositos, Arma vidaInfinity, Arma capacidadDeCombustible) {
         this.escudoMultinucleo = escudoMultinucleo;
         this.blindajeNavesPesadas = blindajeNavesPesadas;
-        this.propulsor = propulsor;
-        this.armaEnergeticaLuz = armaEnergeticaLuz;
-        this.reactor = reactor;
-        this.invisibilidad = invisibilidad;
-        this.armaHielo = armaHielo;
+        this.cañonThanix = cañonThanix;
+        this.cañonPlasma=cañonPlasma;
+        this.capacidadDeDepositos=capacidadDeDepositos;
+        this.vidaInfinity=vidaInfinity;
+        this.capacidadDeCombustible=capacidadDeCombustible;
     }
     
+       
     
-    private HashMap<String,Integer> cargarPrecioThanix(){
+    private HashMap<String,Integer> cargarPrecioEscudoMultinucleo(){
         HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 2093);
-        precios.put("paladio", 2254);
-        precios.put("platino", 0);
-        precios.put("zero", 1987);
-       return precios;
-    }
-    
-     private HashMap<String,Integer> cargarPrecioEscudoMultinucleo(){
-        HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 1000);
-        precios.put("paladio", 250);
-        precios.put("platino", 530);
-        precios.put("zero", 2000);
+        precios.put("iridio", 1800);
+        precios.put("paladio", 1200);
+        precios.put("platino", 1600);
+        precios.put("zero", 500);
         return precios;
     }
     
     private HashMap<String,Integer> cargarPrecioBlindajeNavesPesadas(){
         HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 2000);
-        precios.put("paladio", 1500);
-        precios.put("platino",800);
-        precios.put("zero", 0);
+        precios.put("iridio", 3500);
+        precios.put("paladio", 5500);
+        precios.put("platino",5100);
+        precios.put("zero", 4000);
         return precios;
     }
-    
-    private HashMap<String,Integer> cargarPrecioPropulsor(){
+        
+    private HashMap<String,Integer> cargarPrecioThanix(){
         HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 300);
-        precios.put("paladio", 500);
-        precios.put("platino", 1000);
-        precios.put("zero", 2000);
+        precios.put("iridio", 6000);
+        precios.put("paladio", 6000);
+        precios.put("platino", 6000);
+        precios.put("zero", 4000);
+       return precios;
+    }
+    
+    
+
+    
+    private HashMap<String,Integer> cargarPrecioPropulsorOnix(){
+        HashMap<String, Integer> precios = new HashMap<>();
+        precios.put("iridio", 1200);
+        precios.put("paladio", 800);
+        precios.put("platino", 1500);
+        precios.put("zero", 1000);
         return precios;
     }
       
-    private HashMap<String,Integer> cargarPrecioArmaEnergetica(){
+    private HashMap<String,Integer> cargarPrecioCañonPlasma(){
         HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 0);
-        precios.put("paladio", 240);
-        precios.put("platino", 400);
-        precios.put("zero", 25);
+        precios.put("iridio", 2800);
+        precios.put("paladio", 3000);
+        precios.put("platino", 3500);
+        precios.put("zero", 2500);
         return precios;
     }
     
-    private HashMap<String,Integer> cargarPrecioReactor(){
+    private HashMap<String,Integer> cargarPrecioCapacidadDeDepositos(){
         HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 5000);
-        precios.put("paladio", 100);
-        precios.put("platino",20);
-        precios.put("zero", 10);
+        precios.put("iridio", 4000);
+        precios.put("paladio", 4000);
+        precios.put("platino",4000);
+        precios.put("zero", 4000);
         return precios;
     }
     
-    private HashMap<String,Integer> cargarPrecioArmaDeHielo(){
+    private HashMap<String,Integer> cargarPrecioVidaInfinity(){
         HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 700);
-        precios.put("paladio", 1200);
-        precios.put("platino", 2000);
-        precios.put("zero", 270);
+        precios.put("iridio", 1000);
+        precios.put("paladio", 1000);
+        precios.put("platino", 1000);
+        precios.put("zero", 500);
         return precios;
     }
     
-    private HashMap<String,Integer> cargarPrecioInvisibilidad(){
+    private HashMap<String,Integer> cargarPrecioCapacidadDeCombustible(){
         HashMap<String, Integer> precios = new HashMap<>();
-        precios.put("iridio", 900);
-        precios.put("paladio", 300);
-        precios.put("platino", 856);
-        precios.put("zero", 708);
+        precios.put("iridio", 1500);
+        precios.put("paladio", 2000);
+        precios.put("platino", 1000);
+        precios.put("zero",1500);
         return precios;
     }
 
@@ -162,73 +167,74 @@ public class TiposArma {
     }
 
     /**
-     * @return the propulsor
+     * @return the propulsorOnix
      */
-    public Arma getPropulsor() {
-        return propulsor;
+    public Arma getPropulsorOnix() {
+        return propulsorOnix;
     }
 
     /**
-     * @param propulsor the propulsor to set
+     * @param propulsorOnix the propulsorOnix to set
      */
-    public void setPropulsor(Arma propulsor) {
-        this.propulsor = propulsor;
+    public void setPropulsorOnix(Arma propulsorOnix) {
+        this.propulsorOnix = propulsorOnix;
     }
 
     /**
-     * @return the armaEnergeticaLuz
+     * @return the cañonPlasma
      */
-    public Arma getArmaEnergeticaLuz() {
-        return armaEnergeticaLuz;
+    public Arma getCañonPlasma() {
+        return cañonPlasma;
     }
 
     /**
-     * @param armaEnergeticaLuz the armaEnergeticaLuz to set
+     * @param cañonPlasma the cañonPlasma to set
      */
-    public void setArmaEnergeticaLuz(Arma armaEnergeticaLuz) {
-        this.armaEnergeticaLuz = armaEnergeticaLuz;
+    public void setCañonPlasma(Arma cañonPlasma) {
+        this.cañonPlasma = cañonPlasma;
     }
 
     /**
-     * @return the reactor
+     * @return the capacidadDeDepositos
      */
-    public Arma getReactor() {
-        return reactor;
+    public Arma getCapacidadDeDepositos() {
+        return capacidadDeDepositos;
     }
 
     /**
-     * @param reactor the reactor to set
+     * @param capacidadDeDepositos the capacidadDeDepositos to set
      */
-    public void setReactor(Arma reactor) {
-        this.reactor = reactor;
+    public void setCapacidadDeDepositos(Arma capacidadDeDepositos) {
+        this.capacidadDeDepositos = capacidadDeDepositos;
     }
 
     /**
-     * @return the invisibilidad
+     * @return the vidaInfinity
      */
-    public Arma getInvisibilidad() {
-        return invisibilidad;
+    public Arma getVidaInfinity() {
+        return vidaInfinity;
     }
 
     /**
-     * @param invisibilidad the invisibilidad to set
+     * @param vidaInfinity the vidaInfinity to set
      */
-    public void setInvisibilidad(Arma invisibilidad) {
-        this.invisibilidad = invisibilidad;
+    public void setVidaInfinity(Arma vidaInfinity) {
+        this.vidaInfinity = vidaInfinity;
     }
 
     /**
-     * @return the armaHielo
+     * @return the capacidadDeCombustible
      */
-    public Arma getArmaHielo() {
-        return armaHielo;
+    public Arma getCapacidadDeCombustible() {
+        return capacidadDeCombustible;
     }
 
     /**
-     * @param armaHielo the armaHielo to set
+     * @param capacidadDeCombustible the capacidadDeCombustible to set
      */
-    public void setArmaHielo(Arma armaHielo) {
-        this.armaHielo = armaHielo;
+    public void setCapacidadDeCombustible(Arma capacidadDeCombustible) {
+        this.capacidadDeCombustible = capacidadDeCombustible;
     }
-    
+
+  
 }

@@ -23,11 +23,13 @@ public class ControladorSistemaPlanetario {
     private ControladorPlaneta planetaControl;
     public int[] lineaTransicion;
     public FrameSistemaPlanetarioJugar frameJ;
-public FrameSistemaPlanetarioJugar frame;
+    public FrameSistemaPlanetario frame;
+
     public ControladorSistemaPlanetario() {
 
     }
-        public void destruirFrame(){
+
+    public void destruirFrame() {
         this.frameJ.dispose();
     }
 
@@ -51,14 +53,13 @@ public FrameSistemaPlanetarioJugar frame;
             frame.getPanelSistemaPlanetario().setRutas_planetas(sPlanetario.getRutas_planetas());
             frame.definirFrame(this);
         } else {
-           frameJ = new FrameSistemaPlanetarioJugar();
+            frameJ = new FrameSistemaPlanetarioJugar();
             frameJ.getPanelSistemaPlanetario().setListaPlanetas(getsPlanetario().getLista_planetas());
             frameJ.getPanelSistemaPlanetario().setRutas_planetas(sPlanetario.getRutas_planetas());
             frameJ.definirFrame(this);
 
         }
     }
- 
 
     private void crearFrameSistemaPlanetario() {
         FrameSistemaPlanetario frame = new FrameSistemaPlanetario();
